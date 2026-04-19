@@ -25,8 +25,8 @@
 (map format-program (cdr (read-f filename))))
 
 
-(define PLIST (read-programs "programSmall.csv"))
-(define RLIST (read-residents "residentSmall.csv"))
+(define PLIST (read-programs "programs4000.csv"))
+(define RLIST (read-residents "residents4000.csv"))
 
 
 
@@ -322,4 +322,9 @@
 
 
 ; appel final de la fonction pour produire la sortie
-(gale-shapley-print RLIST PLIST)
+(with-output-to-file "output.txt"
+  (lambda ()
+    (gale-shapley-print RLIST PLIST)
+  )
+  #:exists 'replace)
+
